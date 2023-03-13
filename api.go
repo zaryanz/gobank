@@ -46,6 +46,7 @@ func writeJSON(w http.ResponseWriter, status int, v any) error {
 
 type APIServer struct {
 	listenAddr string
+	store Storage
 }
 
 type APIError struct {
@@ -54,9 +55,10 @@ type APIError struct {
 
 type apiFunc func(http.ResponseWriter, *http.Request) error
 
-func NewAPIServer(listenAddr string) *APIServer {
+func NewAPIServer(listenAddr string, store Storage) *APIServer {
 	return &APIServer{
 		listenAddr: listenAddr,
+		store: store,
 	}
 }
 
